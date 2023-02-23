@@ -5,16 +5,16 @@ module.exports = {
     client: null,
     devsOnly: true,
     async exc(msg, type) {
-        const eventsFile = readdirSync(`${process.cwd()}/event`).filter(
+        const eventsFile = readdirSync(`${__dirname}/../event`).filter(
             (file) => (file.endsWith('.js')));
-        const commandFile = readdirSync(`${process.cwd()}/commands`).filter(
+        const commandFile = readdirSync(`${__dirname}/../commands`).filter(
             (file) => (file.endsWith('.js')));
 
         if (type === 'events') {
             for (const event of eventsFile) {
                 try {
-                    evt = require(`${process.cwd()}/event/${event}`);
-                    delete require.cache[`${process.cwd()}/event/${event}`]
+                    evt = require(`${__dirname}/../event/${event}`);
+                    delete require.cache[`${__dirname}/../event/${event}`]
                     this.client.commands.set(evt.name, evt);
                 } catch (error) {
                     console.log(error);
@@ -24,8 +24,8 @@ module.exports = {
         else if (type === "commands") {
             for (const file of commandFile) {
                 try {
-                    cmd = require(`${process.cwd()}/commands/${file}`);
-                    delete require[`${process.cwd()}/commands/${file}`]
+                    cmd = require(`${__dirname}/../commands/${file}`);
+                    delete require[`${__dirname}/../commands/${file}`]
                     this.client.commands.set(cmd.name, cmd);
                 } catch (error) {
                     console.log(error);

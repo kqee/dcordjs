@@ -4,7 +4,7 @@ const { join } = require('path');
 const logger = require("./utils/npmlog");
 const config = require('./conf.json');
 
-require('dotenv').config({ path: `${process.cwd()}/.env` });
+require('dotenv').config({ path: `${__dirname}/.env` });
 
 const client = new Client(
 	{
