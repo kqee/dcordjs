@@ -10,6 +10,7 @@ it for the reason to replace it with "#".
 
 git clone https://github.com/kqee/dcordjs
 cd dcordjs
+npm install
 npm start
 
 ```
