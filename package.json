@@ -2,9 +2,7 @@
   "dependencies": {
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
-    "js-levenshtein": "^1.1.6",
-    "npmlog": "^7.0.1",
-    "pino-pretty": "^9.2.0"
+    "npmlog": "^7.0.1"
   },
   "name": "dcordjs",
   "version": "1.0.0",

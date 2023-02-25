@@ -67,7 +67,6 @@ module.exports = {
         if (msg.content === '') return;
         if (msg.author.bot) return;
         if (inviteLink.test(msg.content)) return;
-        // if (msg.guild.id !== "866693685159395361") return;
         if (msg.webhookId) return;
         this.replaceBad(msg);
         this.commandHandler(msg)
