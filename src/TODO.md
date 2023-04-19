@@ -5,5 +5,5 @@ I need to handle such error of a channel ever reaches 10 webhooks.
 
 ## to handle this 
 - delete a webhook in a channel if the limit is met.
-- limit max webhook by this bot to 1.
+- limit max webhook by this bot to 2.
 - hope it works.
