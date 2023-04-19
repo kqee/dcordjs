@@ -26,12 +26,11 @@ module.exports = {
 
     },
 
-    replaceBad(msg) {
+    replaceBad(msg, replacewith, to) {
         let parsemsg = msg.content
         let bad = false;
-        const re = new RegExp(`\\b(${profanity.join("|")})\\b`, "gi");
-        const switchTo = "#";
-        const parsed = (parsemsg.match(re))
+        const switchTo = to;
+        const parsed = (parsemsg.match(replacewith))
         if (!parsed) return;
         parsed.forEach(bd => {
             parsemsg = parsemsg.replace(bd, switchTo.repeat(bd.length));
@@ -64,11 +63,12 @@ module.exports = {
 
     exc(msg) {
         const inviteLink = /(https:\/\/)?(www\.)?(((discord(app)?)?\.com\/invite)|((discord(app)?)?\.gg))\/(?<invite>.+)/gm
+        const re = new RegExp(`\\b(${profanity.join("|")})\\b`, "gi");
         if (msg.content === '') return;
         if (msg.author.bot) return;
         if (inviteLink.test(msg.content)) return;
         if (msg.webhookId) return;
-        this.replaceBad(msg);
+        this.replaceBad(msg, re, "#");
         this.commandHandler(msg)
     }
 }
