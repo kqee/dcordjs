@@ -1,12 +1,13 @@
 const { Events, PermissionsBitField } = require('discord.js');
-const profanity = require('./words.json')
+const fs = require("fs");
+const profanity = fs.readFileSync(`${__dirname}/words.txt`, {encoding: "utf-8"});
 module.exports = {
     name: Events.MessageCreate,
     client: null,
     async createWebhook(msg, text) {
         // get avatar url
-        const avatarUrl = (msg.member.displayAvatarURL({ dynamic: true }) || msg.author.avatarURL({ dynamic: true }))
-        const checkperm = msg.guild.members.me.permissions.has(PermissionsBitField.Flags.ManageWebhooks)
+        const avatarUrl = (msg.member.displayAvatarURL({ dynamic: true }) || msg.author.avatarURL({ dynamic: true }));
+        const checkperm = msg.guild.members.me.permissions.has(PermissionsBitField.Flags.ManageWebhooks);
         const objwebhook = {
             name: msg.member.displayName,
             avatar: avatarUrl
@@ -63,7 +64,7 @@ module.exports = {
 
     exc(msg) {
         const inviteLink = /(https:\/\/)?(www\.)?(((discord(app)?)?\.com\/invite)|((discord(app)?)?\.gg))\/(?<invite>.+)/gm
-        const re = new RegExp(`\\b(${profanity.join("|")})\\b`, "gi");
+        const re = new RegExp(`${profanity}`, "gi");
         if (msg.content === '') return;
         if (msg.author.bot) return;
         if (inviteLink.test(msg.content)) return;
